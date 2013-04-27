@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h1> Hello World !! </h1>
+@if (ViewBag.Started)
+{
+    <h2>Fired !!</h2>
+}
+<button name="triggerJob" onclick="@Url.Action("StartMusic","Home")">Click Me !</button>

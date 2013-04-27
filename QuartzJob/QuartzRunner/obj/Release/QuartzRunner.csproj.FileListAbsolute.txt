@@ -1,0 +1,12 @@
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\QuartzRunner.exe.config
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\QuartzRunner.exe
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\QuartzRunner.pdb
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\Common.Logging.dll
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\log4net.dll
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\Quartz.dll
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\Quartz.pdb
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\Quartz.xml
+E:\Projects\QuartzJob\QuartzRunner\obj\Release\QuartzRunner.exe
+E:\Projects\QuartzJob\QuartzRunner\obj\Release\QuartzRunner.pdb
+E:\Projects\QuartzJob\QuartzRunner\obj\Release\QuartzRunner.csprojResolveAssemblyReference.cache
+E:\Projects\QuartzJob\QuartzRunner\bin\Release\Common.Logging.Log4Net1211.dll
