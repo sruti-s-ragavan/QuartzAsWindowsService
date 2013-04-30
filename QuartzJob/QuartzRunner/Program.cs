@@ -3,9 +3,6 @@ using System.Collections.Specialized;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Impl.Triggers;
-using Quartz.Simpl;
-using Quartz.Spi;
-using log4net.Config;
 
 namespace QuartzRunner
 {
@@ -14,16 +11,14 @@ namespace QuartzRunner
         private static IScheduler scheduler;
         public static void Main(string[] args)
         {
-            XmlConfigurator.Configure();
+//            XmlConfigurator.Configure();
 
-            var properties = new NameValueCollection();
-            properties["quartz.scheduler.instanceName"] = "RemoteClient";
+           var properties = new NameValueCollection();
+		   properties["quartz.scheduler.instanceName"] = "ServerScheduler";
 
             // set thread pool info
-            properties["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz";
-            properties["quartz.threadPool.threadCount"] = "5";
-            properties["quartz.threadPool.threadPriority"] = "Normal";
-
+            properties["quartz.threadPool.threadCount"] = "0";
+           
             // set remoting expoter
             properties["quartz.scheduler.proxy"] = "true";
             properties["quartz.scheduler.proxy.address"] = "tcp://localhost:555/QuartzScheduler";
@@ -31,12 +26,20 @@ namespace QuartzRunner
             var scheduleFactory = new StdSchedulerFactory(properties);
 
             scheduler = scheduleFactory.GetScheduler();
+	        var md = scheduler.GetMetaData();
             scheduler.Start();
 
-            IJobDetail job = JobBuilder.Create<SimpleJob>().Build();
-
+            IJobDetail job = JobBuilder.Create<Jobs.SimpleJob>().Build();
+	        
             ITrigger jobTrigger = new SimpleTriggerImpl("TenSecondTrigger", 20, new TimeSpan(0, 0, 0, 5));
-            scheduler.ScheduleJob(job, jobTrigger);
+
+			//Periodic scheduling
+			scheduler.ScheduleJob(job,jobTrigger);
+
+			//Trigger a job from elsewhere without a trigger for one time
+	        var jobKey = job.Key;
+	        var jobDataMap = job.JobDataMap;
+	        scheduler.TriggerJob(jobKey,jobDataMap);			
         }
 
         
